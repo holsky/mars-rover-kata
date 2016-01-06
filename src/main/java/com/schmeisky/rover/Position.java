@@ -13,6 +13,8 @@ public class Position {
         switch (direction) {
             case N: return new Position(x, y+1);
             case S: return new Position(x, y-1);
+            case E: return new Position(x-1, y);
+            case W: return new Position(x+1, y);
             default: return this;
         }
     }
