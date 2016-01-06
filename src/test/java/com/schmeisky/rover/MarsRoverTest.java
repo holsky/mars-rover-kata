@@ -50,7 +50,15 @@ public class MarsRoverTest {
         rover.enterCommand(new char[] {'l'});
 
         assertThat(rover.faces()).isEqualTo(Direction.E);
+    }
 
+    @Test
+    public void turningRoverRightChangesDirectionCW() throws Exception {
+        MarsRover rover = getRoverInOrigin();
+
+        rover.enterCommand(new char[] {'r'});
+
+        assertThat(rover.faces()).isEqualTo(Direction.W);
     }
 
 

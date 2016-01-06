@@ -16,4 +16,8 @@ public enum Direction {
     public Direction counterClockWise() {
         return Direction.values()[(this.ordinal() + 1) % 4];
     }
+
+    public Direction clockWise() {
+        return Direction.values()[(this.ordinal() - 1 + 4) % 4];
+    }
 }
