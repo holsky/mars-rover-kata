@@ -21,50 +21,45 @@ public class MarsRoverTest {
         assertThat(rover.position()).isEqualTo(position);
     }
 
-    private MarsRover getMarsRover(Position position, Direction direction) {
-        return MarsRover.createRoverAt(position, direction);
-    }
-
     @Test
     public void movingNorthFacingRoverForwardMovesItOnePositionUp() throws Exception {
-        MarsRover rover = getRoverInOrigin();
-
-        rover.enterCommand(new char[] {'f'});
-
-        assertThat(rover.position()).isEqualTo(new Position(0,1));
+        moveRoverAtOriginAndCheckPosition('f', new Position(0, 1));
     }
 
     @Test
     public void movingNorthFacingRoverBackwardMovesItOnePositionDown() throws Exception {
+        moveRoverAtOriginAndCheckPosition('b', new Position(0, -1));
+    }
+
+    private void moveRoverAtOriginAndCheckPosition(char movement, Position position) {
         MarsRover rover = getRoverInOrigin();
+        rover.enterCommand(new char[] {movement});
 
-        rover.enterCommand(new char[] {'b'});
-
-        assertThat(rover.position()).isEqualTo(new Position(0, -1));
+        assertThat(rover.position()).isEqualTo(position);
     }
 
     @Test
     public void turningRoverLeftChangesDirectionCCW() throws Exception {
-        MarsRover rover = getRoverInOrigin();
-
-        rover.enterCommand(new char[] {'l'});
-
-        assertThat(rover.faces()).isEqualTo(Direction.E);
+        turnRoverAndCheckDirectionItFaces('l', Direction.E);
     }
 
     @Test
     public void turningRoverRightChangesDirectionCW() throws Exception {
-        MarsRover rover = getRoverInOrigin();
-
-        rover.enterCommand(new char[] {'r'});
-
-        assertThat(rover.faces()).isEqualTo(Direction.W);
+        turnRoverAndCheckDirectionItFaces('r', Direction.W);
     }
 
+    private void turnRoverAndCheckDirectionItFaces(char command, Direction direction) {
+        MarsRover rover = getRoverInOrigin();
+
+        rover.enterCommand(new char[] {command});
+        assertThat(rover.faces()).isEqualTo(direction);
+    }
+
+    private MarsRover getMarsRover(Position position, Direction direction) {
+        return MarsRover.createRoverAt(position, direction);
+    }
 
     private MarsRover getRoverInOrigin() {
-        Position position = new Position(0,0);
-        Direction direction = Direction.N;
-        return MarsRover.createRoverAt(position, direction);
+        return getMarsRover(new Position(0,0), Direction.N);
     }
 }
