@@ -23,47 +23,46 @@ public class MarsRoverTest {
 
     @Test
     public void movingNorthFacingRoverForwardMovesItOnePositionUp() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(0, 1), Direction.N, 'f');
+        moveRoverAtOriginAndCheckPosition(new Position(0, 1), Direction.N, "f");
     }
 
     @Test
     public void movingNorthFacingRoverBackwardMovesItOnePositionDown() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(0, -1), Direction.N, 'b');
+        moveRoverAtOriginAndCheckPosition(new Position(0, -1), Direction.N, "b");
     }
 
     @Test
     public void movingEastFacingRoverForwardMovesItOnePositionLeft() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(-1, 0), Direction.E, 'f');
+        moveRoverAtOriginAndCheckPosition(new Position(-1, 0), Direction.E, "f");
     }
 
     @Test
     public void movingWestFacingRoverForwardMovesItOnePositionRight() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(1, 0), Direction.W, 'f');
-    }
-
-
-    private void moveRoverAtOriginAndCheckPosition(Position position, Direction direction, char movement) {
-        MarsRover rover = getRoverAtOrigin(direction);
-
-        rover.enterCommand(new char[] {movement});
-
-        assertThat(rover.position()).isEqualTo(position);
+        moveRoverAtOriginAndCheckPosition(new Position(1, 0), Direction.W, "f");
     }
 
     @Test
     public void turningRoverLeftChangesDirectionCCW() throws Exception {
-        turnRoverAndCheckDirectionItFaces('l', Direction.E);
+        turnRoverAndCheckDirectionItFaces("l", Direction.E);
     }
 
     @Test
     public void turningRoverRightChangesDirectionCW() throws Exception {
-        turnRoverAndCheckDirectionItFaces('r', Direction.W);
+        turnRoverAndCheckDirectionItFaces("r", Direction.W);
     }
 
-    private void turnRoverAndCheckDirectionItFaces(char command, Direction direction) {
+    private void moveRoverAtOriginAndCheckPosition(Position position, Direction direction, String movement) {
+        MarsRover rover = getRoverAtOrigin(direction);
+
+        rover.enterCommand(movement);
+
+        assertThat(rover.position()).isEqualTo(position);
+    }
+
+    private void turnRoverAndCheckDirectionItFaces(String command, Direction direction) {
         MarsRover rover = getNorthFacingRoverAtOrigin();
 
-        rover.enterCommand(new char[] {command});
+        rover.enterCommand(command);
         assertThat(rover.faces()).isEqualTo(direction);
     }
 

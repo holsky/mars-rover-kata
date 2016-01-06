@@ -22,8 +22,8 @@ public class MarsRover {
         return position;
     }
 
-    public void enterCommand(char[] chars) {
-        for (char c : chars) {
+    public void enterCommand(String commands) {
+        for (char c : commands.toCharArray()) {
             switch (c) {
                 case 'f': position = position.inDirection(direction); break;
                 case 'b': position = position().inDirection(direction.reverse()); break;
