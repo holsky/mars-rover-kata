@@ -36,10 +36,8 @@ public class MarsRoverTest {
 
         rover.enterCommand(new char[] {'b'});
 
-        assertThat(rover.position()).isEqualTo(new Position(0,1));
+        assertThat(rover.position()).isEqualTo(new Position(0, -1));
     }
-
-
 
     private MarsRover getRoverInOrigin() {
         Position position = new Position(0,0);

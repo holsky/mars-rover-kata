@@ -26,6 +26,7 @@ public class MarsRover {
         for (char c : chars) {
             switch (c) {
                 case 'f': position = position.inDirection(direction); break;
+                case 'b': position = position().inDirection(direction.reverse()); break;
                 default:
             }
         }

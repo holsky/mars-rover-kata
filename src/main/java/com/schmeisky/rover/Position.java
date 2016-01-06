@@ -9,6 +9,14 @@ public class Position {
         this.y = y;
     }
 
+    public Position inDirection(Direction direction) {
+        switch (direction) {
+            case N: return new Position(x, y+1);
+            case S: return new Position(x, y-1);
+            default: return this;
+        }
+    }
+
     @Override
     public String toString() {
         return "Position{" +
@@ -34,13 +42,5 @@ public class Position {
         int result = x;
         result = 31 * result + y;
         return result;
-    }
-
-    public Position inDirection(Direction direction) {
-        switch (direction) {
-            case N:
-                return new Position(x, y+1);
-            default: return this;
-        }
     }
 }
