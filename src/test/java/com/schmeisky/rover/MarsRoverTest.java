@@ -1,5 +1,6 @@
 package com.schmeisky.rover;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -11,9 +12,16 @@ import static org.assertj.core.api.Assertions.*;
  */
 public class MarsRoverTest {
 
+    World world;
+
+    @Before
+    public void before() {
+        world = new World(10, 10);
+    }
+    
     @Test
     public void testRoverIsCreated() throws Exception {
-        Position position = new Position(0,0);
+        World.Position position = world.new Position(4,4);
         Direction direction = Direction.N;
         MarsRover rover = getMarsRover(position, direction);
 
@@ -23,22 +31,22 @@ public class MarsRoverTest {
 
     @Test
     public void movingNorthFacingRoverForwardMovesItOnePositionUp() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(0, 1), Direction.N, "f");
+        moveRoverAtOriginAndCheckPosition(world.new Position(4, 5), Direction.N, "f");
     }
 
     @Test
     public void movingNorthFacingRoverBackwardMovesItOnePositionDown() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(0, -1), Direction.N, "b");
+        moveRoverAtOriginAndCheckPosition(world.new Position(4, 3), Direction.N, "b");
     }
 
     @Test
     public void movingEastFacingRoverForwardMovesItOnePositionLeft() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(-1, 0), Direction.E, "f");
+        moveRoverAtOriginAndCheckPosition(world.new Position(3, 4), Direction.E, "f");
     }
 
     @Test
     public void movingWestFacingRoverForwardMovesItOnePositionRight() throws Exception {
-        moveRoverAtOriginAndCheckPosition(new Position(1, 0), Direction.W, "f");
+        moveRoverAtOriginAndCheckPosition(world.new Position(5, 4), Direction.W, "f");
     }
 
     @Test
@@ -51,7 +59,7 @@ public class MarsRoverTest {
         turnRoverAndCheckDirectionItFaces("r", Direction.W);
     }
 
-    private void moveRoverAtOriginAndCheckPosition(Position position, Direction direction, String movement) {
+    private void moveRoverAtOriginAndCheckPosition(World.Position position, Direction direction, String movement) {
         MarsRover rover = getRoverAtOrigin(direction);
 
         rover.enterCommand(movement);
@@ -71,10 +79,10 @@ public class MarsRoverTest {
     }
 
     private MarsRover getRoverAtOrigin(Direction direction) {
-        return getMarsRover(new Position(0,0), direction);
+        return getMarsRover(world.new Position(4,4), direction);
     }
 
-    private MarsRover getMarsRover(Position position, Direction direction) {
+    private MarsRover getMarsRover(World.Position position, Direction direction) {
         return MarsRover.createRoverAt(position, direction);
     }
 }

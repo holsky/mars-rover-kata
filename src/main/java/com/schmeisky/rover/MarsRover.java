@@ -2,15 +2,15 @@ package com.schmeisky.rover;
 
 public class MarsRover {
 
-    private Position position;
+    private World.Position position;
     private Direction direction;
 
-    private MarsRover(Position position, Direction direction) {
+    private MarsRover(World.Position position, Direction direction) {
         this.direction = direction;
         this.position = position;
     }
 
-    public static MarsRover createRoverAt(Position position, Direction direction) {
+    public static MarsRover createRoverAt(World.Position position, Direction direction) {
         return new MarsRover(position, direction);
     }
 
@@ -18,7 +18,7 @@ public class MarsRover {
         return direction;
     }
 
-    public Position position() {
+    public World.Position position() {
         return position;
     }
 
