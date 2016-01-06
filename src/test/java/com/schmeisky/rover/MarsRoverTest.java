@@ -41,6 +41,12 @@ public class MarsRoverTest {
         moveRoverAtOriginAndCheckPosition(new Position(1, 0), Direction.W, 'f');
     }
 
+    //this is more of a regression test
+    @Test
+    public void movingWestFacingRoverBackwardMovesItOnePositionLeft() throws Exception {
+        moveRoverAtOriginAndCheckPosition(new Position(-1, 0), Direction.W, 'b');
+    }
+
     private void moveRoverAtOriginAndCheckPosition(Position position, Direction direction, char movement) {
         MarsRover rover = getRoverAtOrigin(direction);
 
