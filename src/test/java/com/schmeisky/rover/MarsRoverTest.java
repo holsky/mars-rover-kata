@@ -18,7 +18,8 @@ public class MarsRoverTest {
     public void before() {
         world = new World(10, 10);
     }
-    
+
+    //1st test to specify the objects and methods
     @Test
     public void testRoverIsCreated() throws Exception {
         World.Position position = world.new Position(4,4);
@@ -29,6 +30,7 @@ public class MarsRoverTest {
         assertThat(rover.position()).isEqualTo(position);
     }
 
+    //2nd Test
     @Test
     public void movingNorthFacingRoverForwardMovesItOnePositionUp() throws Exception {
         moveRoverAtOriginAndCheckPosition(world.new Position(4, 5), Direction.N, "f");

@@ -12,8 +12,6 @@ public class World {
         this.ylimit = ylimit;
     }
 
-
-
     public class Position {
 
         public int x,y;
