@@ -1,7 +1,7 @@
 package com.schmeisky.rover;
 
 public enum Direction {
-    N, S, E, W;
+    N, E, S, W;
 
     public Direction reverse() {
         switch (this) {
@@ -11,5 +11,9 @@ public enum Direction {
             case W: return E;
             default: return this;
         }
+    }
+
+    public Direction counterClockWise() {
+        return Direction.values()[(this.ordinal() + 1) % 4];
     }
 }

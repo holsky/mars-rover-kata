@@ -27,6 +27,7 @@ public class MarsRover {
             switch (c) {
                 case 'f': position = position.inDirection(direction); break;
                 case 'b': position = position().inDirection(direction.reverse()); break;
+                case 'l': direction = direction.counterClockWise(); break;
                 default:
             }
         }

@@ -15,14 +15,18 @@ public class MarsRoverTest {
     public void testRoverIsCreated() throws Exception {
         Position position = new Position(0,0);
         Direction direction = Direction.N;
-        MarsRover rover = MarsRover.createRoverAt(position, direction);
+        MarsRover rover = getMarsRover(position, direction);
 
         assertThat(rover.faces()).isEqualTo(direction);
         assertThat(rover.position()).isEqualTo(position);
     }
 
+    private MarsRover getMarsRover(Position position, Direction direction) {
+        return MarsRover.createRoverAt(position, direction);
+    }
+
     @Test
-    public void movingNortFacingRoverForwardMovesItOnePositionUp() throws Exception {
+    public void movingNorthFacingRoverForwardMovesItOnePositionUp() throws Exception {
         MarsRover rover = getRoverInOrigin();
 
         rover.enterCommand(new char[] {'f'});
@@ -38,6 +42,17 @@ public class MarsRoverTest {
 
         assertThat(rover.position()).isEqualTo(new Position(0, -1));
     }
+
+    @Test
+    public void turningRoverLeftChangesDirectionCCW() throws Exception {
+        MarsRover rover = getRoverInOrigin();
+
+        rover.enterCommand(new char[] {'l'});
+
+        assertThat(rover.faces()).isEqualTo(Direction.E);
+
+    }
+
 
     private MarsRover getRoverInOrigin() {
         Position position = new Position(0,0);
